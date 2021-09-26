@@ -43,10 +43,9 @@ public class ProductResource {
     }
     @GetMapping(value = "/products/{id}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public Product findProductById(@PathVariable("id")Long id)throws ResourceNotFound{
-        if( !productRepository.existsById(id)){
-            throw new ResourceNotFound("product not found!");
-        }
-       return productRepository.getById(id);
+        return productRepository
+                .findById(id)
+                .orElseThrow(()->new ResourceNotFound("Product with Id :"+id+" not found"));
     }
     @GetMapping(value = "/products/{keyword}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public List findProductsByKeyword(@PathVariable("keyword")String keyword)throws ResourceNotFound{
@@ -86,4 +85,12 @@ public class ProductResource {
                                 }).map(ResponseEntity::ok)
                                   .orElse(ResponseEntity.notFound().build());
     }
+   @DeleteMapping(value = "/remove/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity removeById(@PathVariable("id")Long id){
+        if(productRepository.existsById(id)){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        productRepository.deleteById(id);
+        return new ResponseEntity(HttpStatus.OK);
+   }
 }

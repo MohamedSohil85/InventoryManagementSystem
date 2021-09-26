@@ -17,6 +17,13 @@ public class OrderDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderDetailsId;
+    private float unit_price;
+    private int Quantity;
+    private float total;
+    private int size;
+    private int discount;
+    private  Date date;
     @OneToOne
     private Product product;
+    private Orders orders;
 }
