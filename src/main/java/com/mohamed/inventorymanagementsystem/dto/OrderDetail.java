@@ -1,5 +1,6 @@
 package com.mohamed.inventorymanagementsystem.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Setter
@@ -22,8 +24,10 @@ public class OrderDetail implements Serializable {
     private float total;
     private int size;
     private int discount;
-    private  Date date;
+    @JsonFormat(pattern = "dd.MM.YYYY")
+    private Date date;
     @OneToOne
     private Product product;
+    @ManyToOne
     private Orders orders;
 }

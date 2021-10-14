@@ -1,5 +1,6 @@
 package com.mohamed.inventorymanagementsystem.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,10 +26,15 @@ public class Product implements Serializable {
     private float price;
     @Enumerated(EnumType.STRING)
     private ProductStatus productStatus;
+    @JsonFormat(pattern = "dd.MM.YYYY")
     private Date dateOfExpiry;
-    private Date dateOfRegistration;
+    @JsonFormat(pattern = "dd.MM.YYYY")
+    private Date addedOn;
+    private String productURL;
     @ManyToOne
     private Category category;
     @ManyToOne
     private Brand brand;
+    @ManyToOne
+    private Supplier supplier;
 }

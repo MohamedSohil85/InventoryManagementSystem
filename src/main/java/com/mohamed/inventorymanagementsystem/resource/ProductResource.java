@@ -22,16 +22,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class ProductResource {
-    @Autowired
-    private ProductRepository productRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
+
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
+
+    public ProductResource(ProductRepository productRepository, CategoryRepository categoryRepository) {
+        this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
+    }
 
     @PostMapping(value = "/product/{categoryId}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public Product saveNewProduct(@PathVariable("categoryId")Long id, @RequestBody Product product)throws ResourceNotFound{
         return categoryRepository.findById(id).map(category -> {
             product.setCategory(category);
-            product.setDateOfRegistration(new Date());
+            product.setAddedOn(new Date());
             LocalDate localDate=LocalDate.now();
             if(product.getDateOfExpiry().equals(localDate)){
                 product.setProductStatus(ProductStatus.EXPIRED);
@@ -66,6 +70,18 @@ public class ProductResource {
         }
         return new ResponseEntity<>(products.getContent(), HttpStatus.OK);
     }
+    @GetMapping(value = "/products",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Product>> getProductsByCategoryName(@RequestParam(defaultValue = "0")Integer pageNo,
+                                                      @RequestParam(defaultValue ="10")Integer pageSize,
+                                                    @RequestParam("productName")String sortBy,
+                                                    @RequestParam("categoryName")String categoryName){
+        Pageable pageable=PageRequest.of(pageNo,pageSize,Sort.by(sortBy).ascending());
+        Page<Product>products=productRepository.findProductsByCategory_CategoryName(categoryName,pageable);
+        if (!products.hasContent()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(products.getContent(),HttpStatus.OK);
+    }
     @GetMapping(value = "/product/{name}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Product>getProductByName(@PathVariable("name")String name){
         return productRepository.findByProductName(name)
@@ -93,4 +109,5 @@ public class ProductResource {
         productRepository.deleteById(id);
         return new ResponseEntity(HttpStatus.OK);
    }
+
 }

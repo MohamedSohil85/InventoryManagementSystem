@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Setter
@@ -25,4 +26,5 @@ public class Company implements Serializable {
     private String City;
     private String PostalCode;
     private String Country;
+    private List<Supplier>suppliers;
 }

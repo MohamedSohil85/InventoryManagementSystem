@@ -21,7 +21,7 @@ public class Orders implements Serializable {
     private Long orderId;
     private Date OrderDate;
     @ManyToOne
-    private Customer customer;
+    private User user;
     @OneToMany
     List<OrderDetail> orderDetailList;
 }
