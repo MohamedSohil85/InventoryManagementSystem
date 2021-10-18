@@ -1,5 +1,6 @@
 package com.mohamed.inventorymanagementsystem.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,8 @@ public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderId;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd.MM.YYYY")
     private Date OrderDate;
     @ManyToOne
     private User user;

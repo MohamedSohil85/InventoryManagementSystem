@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,7 +21,10 @@ public class OrderDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderDetailsId;
-    private float unit_price;
+    @NotNull(message = "Please enter a price")
+    private float priceOfPiece;
+    @NotNull(message = "Please enter a Quantity")
+    @DecimalMin("1")
     private int Quantity;
     private float total;
     private int size;
