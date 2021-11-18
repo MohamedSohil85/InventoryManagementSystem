@@ -27,4 +27,5 @@ public class Orders implements Serializable {
     private User user;
     @OneToMany
     List<OrderDetail> orderDetailList;
+    private double sum;
 }

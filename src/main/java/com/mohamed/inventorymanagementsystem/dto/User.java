@@ -6,15 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
@@ -37,4 +36,6 @@ public class User implements Serializable {
     @NotEmpty(message = "please enter a E-mail")
     private String email;
     private String token;
+    @OneToMany
+    private List<Orders> ordersList;
 }
