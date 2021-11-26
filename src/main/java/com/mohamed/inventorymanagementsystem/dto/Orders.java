@@ -23,9 +23,18 @@ public class Orders implements Serializable {
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd.MM.YYYY")
     private Date OrderDate;
+    private int total_product;
+    private int discount;
+    private int vat_charge_rate;
+    private int service_charge_rate;
+    private float vat_charge;
+    private float gross_amount;
+    private float net_amount;
     @ManyToOne
-    private User user;
+    private Staff staff;
+    @ManyToOne
+    private Customer customer;
     @OneToMany
-    List<OrderDetail> orderDetailList;
-    private double sum;
+    List<OrderItem> orderItemList;
+    private double total;
 }

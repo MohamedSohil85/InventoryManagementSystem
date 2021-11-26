@@ -17,19 +17,14 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDetail implements Serializable {
+public class OrderItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long orderDetailsId;
-    @NotNull(message = "Please enter a price")
-    private float priceOfPiece;
-    @NotNull(message = "Please enter a Quantity")
+    private Long orderItemId;
     @DecimalMin("1")
     private int Quantity;
     private float total;
-    private int size;
-    private int discount;
-    @JsonFormat(pattern = "dd.MM.YYYY")
+    @JsonFormat(pattern = "dd.MM.yyyy")
     private Date date;
     @OneToOne
     private Product product;
