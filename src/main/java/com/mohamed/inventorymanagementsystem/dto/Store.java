@@ -19,6 +19,8 @@ public class Store implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long storeId;
     private String storeName;
+    private String description;
+    private String OpeningTime;
     private String location;
     @ManyToOne
     private Category category;
