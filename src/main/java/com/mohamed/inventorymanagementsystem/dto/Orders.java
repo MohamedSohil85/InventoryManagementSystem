@@ -26,7 +26,6 @@ public class Orders implements Serializable {
     private int total_product;
     private int discount;
     private int vat_charge_rate;
-    private int service_charge_rate;
     private float vat_charge;
     private float gross_amount;
     private float net_amount;

@@ -25,7 +25,7 @@ public class Supplier implements Serializable {
     @NotEmpty(message = "please enter a Phone Number")
     @Length(min = 5,max = 12)
     private String phone;
-    @OneToMany
+    @OneToMany(mappedBy = "supplier",cascade = CascadeType.ALL)
     private List<Product>products;
     @ManyToOne
     private Company company;

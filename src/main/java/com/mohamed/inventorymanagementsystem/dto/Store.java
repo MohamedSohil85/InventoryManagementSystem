@@ -14,11 +14,12 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Rack implements Serializable {
+public class Store implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long rackId;
-    private String tokenNumber;
-    @OneToMany
-    private List<Product> products;
+    private Long storeId;
+    private String storeName;
+    private String location;
+    @ManyToOne
+    private Category category;
 }

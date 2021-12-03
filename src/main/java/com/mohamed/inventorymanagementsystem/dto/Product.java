@@ -47,4 +47,5 @@ public class Product implements Serializable {
     private Brand brand;
     @ManyToOne
     private Supplier supplier;
+
 }

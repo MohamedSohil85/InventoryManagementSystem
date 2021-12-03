@@ -21,6 +21,8 @@ public class Category implements Serializable {
     private Long categoryId;
     @NotEmpty(message = "Please enter a Name")
     private String categoryName;
-    @OneToMany
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
     private List<Product>products;
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    private List<Store> stores;
 }
