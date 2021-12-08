@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,17 +16,18 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderItem implements Serializable {
+public class SalesItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long orderItemId;
+    private Long SalesItemId;
     @DecimalMin("1")
     private int Quantity;
     private float total;
     @JsonFormat(pattern = "dd.MM.yyyy")
     private Date date;
+    private int rate;
     @OneToOne
     private Product product;
     @ManyToOne
-    private Orders orders;
+    private Sales sales;
 }

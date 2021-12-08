@@ -16,13 +16,14 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Orders implements Serializable {
+public class Sales implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long orderId;
+    private Long salesId;
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd.MM.YYYY")
-    private Date OrderDate;
+    private Date SalesDate;
+    private String invoice_No;
     private int total_product;
     private int discount;
     private int vat_charge_rate;
@@ -34,6 +35,6 @@ public class Orders implements Serializable {
     @ManyToOne
     private Customer customer;
     @OneToMany
-    List<OrderItem> orderItemList;
+    List<SalesItem> SalesItemList;
     private double total;
 }

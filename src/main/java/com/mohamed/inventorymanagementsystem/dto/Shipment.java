@@ -29,6 +29,6 @@ public class Shipment implements Serializable {
     @NotEmpty(message = "please enter a E-mail")
     private String email;
     @OneToOne
-    private Orders orders;
+    private Sales sales;
 
 }

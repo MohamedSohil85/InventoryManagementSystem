@@ -11,7 +11,7 @@ public class AppConfig {
         FilterRegistrationBean<LoggingFilter>registrationBean=new FilterRegistrationBean<>();
         registrationBean.setFilter(new LoggingFilter());
         registrationBean.addUrlPatterns("/api/*");
-        registrationBean.setOrder(1);
+        registrationBean.setSales(1);
         return registrationBean;
     }
     @Bean
@@ -19,7 +19,7 @@ public class AppConfig {
         FilterRegistrationBean<CustomFilter>registrationBean=new FilterRegistrationBean<>();
         registrationBean.setFilter(new CustomFilter());
         registrationBean.addUrlPatterns("/api/*");
-        registrationBean.setOrder(2);
+        registrationBean.setSales(2);
         return registrationBean;
     }
 }

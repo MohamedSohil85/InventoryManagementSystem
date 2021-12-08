@@ -1,6 +1,7 @@
 package com.mohamed.inventorymanagementsystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.mohamed.inventorymanagementsystem.enums.ProductStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,8 @@ public class Product implements Serializable {
     private Long productId;
     @NotEmpty(message = "Please enter a Name")
     private String productName;
+    @NotEmpty
+    private String sku;
     @NotEmpty(message = "Please enter a Description")
     private String productDesc;
     @NotEmpty(message = "Please enter a Product Unit")

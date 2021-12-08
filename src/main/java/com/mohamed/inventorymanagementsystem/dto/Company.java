@@ -19,7 +19,9 @@ public class Company implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String address;
+    private String faxNo;
+    private String website;
+    private String street;
     private String City;
     private String PostalCode;
     private String Country;
